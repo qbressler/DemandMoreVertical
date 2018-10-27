@@ -49,5 +49,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DemandMoreVertical.BLL\DemandMoreVertical.BLL.csproj">
+      <Project>{c4086800-f19b-4a3b-be12-a166c53c9a9c}</Project>
+      <Name>DemandMoreVertical.BLL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
