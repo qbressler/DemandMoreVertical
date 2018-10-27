@@ -17,22 +17,24 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <img src="~/Content/VRLogo.png" />
-
+                @*@Html.ActionLink("Demand More Vertical", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    <li>@Html.ActionLink("My Stats", "Index", "PersonalData")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
     </div>
-    <div class="container body-content" style="margin-top: 100px">
+    <div class="container body-content">
+        <br />
+        <img src="~/Content/VRLogo.png" style="margin-bottom: 50px; "/>
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Demand More Vertical</p>
+            <p>&copy; @DateTime.Now.Year - Vertical Runner - Demand More Vertical</p>
         </footer>
     </div>
 
