@@ -33,6 +33,7 @@ namespace DemandMoreVertical.Web.Authentication
 
         public Authenticator(OAuth2Client client) : base(client)
         {
+            
         }
 
         public async Task<Uri> GetLoginLinkUri()

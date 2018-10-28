@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Strava.Authentication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +11,8 @@ namespace DemandMoreVertical.Console
     {
         static void Main(string[] args)
         {
+            StaticAuthentication auth = new StaticAuthentication("");
+            
         }
     }
 }
