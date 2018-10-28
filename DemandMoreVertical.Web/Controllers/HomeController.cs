@@ -1,5 +1,7 @@
 ﻿using DemandMoreVertical.Web.Authentication;
+using DemandMoreVertical.Web.Models;
 using DemandMoreVertical.Web.ViewModels;
+using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using RestSharp.Portable;
 using RestSharp.Portable.HttpClient;
@@ -18,11 +20,17 @@ using System.Web.Mvc;
 
 namespace DemandMoreVertical.Web.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
+        private readonly Entities _db = null;
+
+        public HomeController()
+        {
+            _db = new Entities();
+        }
         public async Task<ActionResult> Index()
         {
-            
             var authenticator = CreateAuthenticator();
             //var viewModel = new HomeViewModel(authenticator.IsAuthenticated);
            
@@ -41,6 +49,28 @@ namespace DemandMoreVertical.Web.Controllers
 
                     response = await httpClient.GetStringAsync("https://www.strava.com/api/v3/athlete/activities");
                     var acts = JsonConvert.DeserializeObject<List<Classes.Activity>>(response);
+
+                    //insert into db now.
+
+                    foreach (var w in acts)
+                    {
+                        var exists = Convert.ToBoolean(_db.Elevations.Where(x => x.ActivityID == w.id).Count());
+                        if (!exists)
+                        {
+                            _db.Elevations.Add(
+                                new Elevation
+                                {
+                                    ActivityDate = w.start_date,
+                                    ActivityName = w.name,
+                                    UserID = User.Identity.GetUserId(),
+                                    Athlete = $"{ath.firstname} {ath.lastname}",
+                                    ElevationGain = Convert.ToInt32(Convert.ToDouble(w.total_elevation_gain) * 3.2808),
+                                    ActivityID = Convert.ToInt32(w.id)
+                                }
+                            );
+                            _db.SaveChanges();
+                        }
+                    }
 
                     // Build ViewModel
                     var viewModel = new HomeViewModel();
