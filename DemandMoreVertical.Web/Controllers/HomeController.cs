@@ -1,5 +1,6 @@
 ﻿using DemandMoreVertical.Web.Authentication;
 using DemandMoreVertical.Web.ViewModels;
+using Newtonsoft.Json;
 using RestSharp.Portable;
 using RestSharp.Portable.HttpClient;
 using RestSharp.Portable.OAuth2;
@@ -34,18 +35,23 @@ namespace DemandMoreVertical.Web.Controllers
                     // TESTING
                     HttpClient httpClient = new HttpClient();
                     httpClient.DefaultRequestHeaders.Authorization = new System.Net.Http.Headers.AuthenticationHeaderValue("Bearer", authenticator.AccessToken);
-                    var response = await httpClient.GetStringAsync("https://www.strava.com/api/v3/athlete/activities");
+
+                    var response = await httpClient.GetStringAsync("https://www.strava.com/api/v3/athlete");
+                    var ath = JsonConvert.DeserializeObject<Classes.Athlete>(response);
+
+                    response = await httpClient.GetStringAsync("https://www.strava.com/api/v3/athlete/activities");
+                    var acts = JsonConvert.DeserializeObject<List<Classes.Activity>>(response);
 
                     // Build ViewModel
                     var viewModel = new HomeViewModel();
-                    viewModel.Activities = await client.Activities.GetAthleteActivities();
-                    viewModel.Athlete = await client.Athletes.GetCurrent();
+                    viewModel.Activities = acts;
+                    viewModel.Athlete = ath;
 
                     return View(viewModel);
                 }
                 catch(Exception e)
                 {
-                    return HttpNotFound("An error has occured while obtaining strava data");
+                    return HttpNotFound("An error has occured while obtaining strava data! " +e.Message);
                 }
             }
             return RedirectToAction("Index", "Strava");

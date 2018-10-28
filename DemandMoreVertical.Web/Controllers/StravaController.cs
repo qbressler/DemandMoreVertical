@@ -11,9 +11,8 @@ namespace DemandMoreVertical.Web.Controllers
         // GET: Strava
         public ActionResult Index()
         {
-
-            var redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Home/Callback";
-            return Redirect("https://www.strava.com/oauth/authorize?client_id=18876&response_type=code&scope=activity:read_all&redirect_uri=" + redirectUrl+"&approval_prompt=force");
+            string redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Home/Callback";
+            return Redirect("https://www.strava.com/oauth/authorize?client_id=18876&response_type=code&scope=activity:read_all&redirect_uri=" + redirectUrl+"&approval_prompt=auto");
         }
     }
 }

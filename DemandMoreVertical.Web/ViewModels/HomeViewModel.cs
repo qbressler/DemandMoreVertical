@@ -9,16 +9,15 @@ namespace DemandMoreVertical.Web.ViewModels
 {
     public class HomeViewModel
     {
-        //public HomeViewModel(bool isAuthenticated)
-        //{
-        //    IsAuthenticated = isAuthenticated;
-        //}ObservableCollection
+        #region constructor
+        public HomeViewModel()
+        {
+            Activities = new List<Classes.Activity>();
+            Athlete = new Classes.Athlete();
+        }
+        #endregion
 
-        //public bool IsAuthenticated { get; private set; }
-
-        //public IList<ActivityViewModel> Activities { get; } = new ObservableCollection<ActivityViewModel>();
-
-        public List<ActivitySummary> Activities { get; set; }
-        public Athlete Athlete { get; set; }
+        public IList<Classes.Activity> Activities { get; set; }
+        public Classes.Athlete Athlete { get; set; }
     }
 }
