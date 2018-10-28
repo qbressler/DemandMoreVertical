@@ -3,10 +3,25 @@
 <div class="row">
     <h2>@Model.Athlete.FirstName @Model.Athlete.LastName</h2>
     <strong>@Model.Athlete.Country</strong>
-    
 </div>
-<div class="row">
-    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur feugiat arcu vitae tellus tempus pellentesque. Nam porta finibus risus, eu tristique mauris scelerisque quis. Ut maximus blandit turpis at hendrerit. Fusce auctor, ante id euismod bibendum, diam metus accumsan mauris, at pharetra neque nibh sed ipsum. Mauris euismod metus ut sapien finibus lobortis. Aliquam nec eleifend dolor, in vestibulum diam. Vestibulum sed ex vehicula, volutpat leo suscipit, elementum ipsum. In dapibus venenatis rutrum. Ut nibh orci, placerat id metus varius, porta porta ex. Aliquam tristique sem sed dolor tristique, ac commodo diam bibendum. Suspendisse id metus ac arcu pretium consectetur sit amet non felis. Donec ullamcorper, eros eget porta efficitur, risus diam placerat nunc, at pretium ante felis venenatis urna.</p>
 
-    <p>Ut eget est ac lectus vulputate elementum. Morbi tempor eget nibh nec blandit. Aenean libero lacus, aliquam sed nulla consectetur, pretium cursus leo. Proin ut ligula non enim condimentum maximus. Sed ut venenatis elit. Nunc neque tellus, suscipit quis sem quis, egestas congue lacus. Curabitur blandit mauris vestibulum aliquam tempus. Duis quis tincidunt quam. Integer porta dictum risus, pulvinar pulvinar mauris pretium ut. Suspendisse convallis commodo nisl, at semper turpis interdum nec. Nulla ut ligula blandit neque blandit tincidunt. Aenean efficitur vel risus a blandit. Duis a maximus nunc. Mauris malesuada mauris neque, nec finibus metus rhoncus quis.</p>
-</div>
+<table class="table">
+    <tr>
+        <td><strong>Title</strong></td>
+        <td><strong>Elevation</strong></td>
+        <td><strong>Start Lat/Long</strong></td>
+        @*<td><strong>End Lat/Long</strong></td>*@
+    </tr>
+    @foreach(var a in Model.Activities)
+    {
+        var total = Convert.ToDouble(a.TotalElevationGain) * 3.2808;
+        <tr>
+            <td>@a.Name</td>
+            <td>@Convert.ToInt32(total).ToString() ft</td>
+            @if (a.StartLatLng != null)
+            {
+                <td>@a.StartLatLng.Latitude</td>
+            }
+        </tr>
+    }
+</table>

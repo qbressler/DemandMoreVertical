@@ -53,12 +53,17 @@ namespace DemandMoreVertical.Web.Controllers
 
         Authenticator CreateAuthenticator()
         {
+            string secretkey = String.Empty;
+            using (StreamReader reader = new StreamReader(@"C:\Users\qbressler\Desktop\strava_api_key.txt"))
+            {
+                secretkey = reader.ReadToEnd();
+            }
             var redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Home/Callback";
             var config = new RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration
             {
                 IsEnabled = true,
                 ClientId = "18876",
-                ClientSecret = "",
+                ClientSecret = secretkey,
                 RedirectUri = redirectUrl,
                 Scope = "read_all",
                
