@@ -33,6 +33,8 @@
           <Property Name="ActivityDate" Type="datetime" Nullable="false" />
           <Property Name="ElevationGain" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="ActivityID" Type="bigint" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
         </EntityType>
         <Association Name="FK_Elevations_AspNetUsers">
           <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
@@ -96,6 +98,8 @@
           <Property Name="ElevationGain" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Elevations_AspNetUsers" FromRole="Elevation" ToRole="AspNetUser" />
           <Property Name="ActivityID" Type="Int32" Nullable="false" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
         </EntityType>
         <Association Name="FK_Elevations_AspNetUsers">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -136,6 +140,8 @@
           <EntitySetMapping Name="Elevations">
             <EntityTypeMapping TypeName="Model.Elevation">
               <MappingFragment StoreEntitySet="Elevations">
+                <ScalarProperty Name="Longitude" ColumnName="Longitude" />
+                <ScalarProperty Name="Latitude" ColumnName="Latitude" />
                 <ScalarProperty Name="ActivityID" ColumnName="ActivityID" />
                 <ScalarProperty Name="ElevationGain" ColumnName="ElevationGain" />
                 <ScalarProperty Name="ActivityDate" ColumnName="ActivityDate" />

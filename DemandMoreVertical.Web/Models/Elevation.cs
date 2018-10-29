@@ -21,6 +21,8 @@ namespace DemandMoreVertical.Web.Models
         public System.DateTime ActivityDate { get; set; }
         public decimal ElevationGain { get; set; }
         public int ActivityID { get; set; }
+        public decimal Latitude { get; set; }
+        public decimal Longitude { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }
