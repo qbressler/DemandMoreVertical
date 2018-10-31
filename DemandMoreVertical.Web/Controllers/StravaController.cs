@@ -33,9 +33,17 @@ namespace DemandMoreVertical.Web.Controllers
         public async Task<ActionResult> MyStats()
         {
             var authenticator = CreateAuthenticator();
+            var viewModel = new HomeViewModel();
+            DateTime beginDate = DateTime.Today;
+            while (beginDate.DayOfWeek != DayOfWeek.Monday)
+            {
 
-            DateTime beginDate = DateTime.Now;
-            while (beginDate.DayOfWeek != DayOfWeek.Monday) beginDate = beginDate.AddDays(-1);
+                beginDate = beginDate.AddDays(-1);
+               
+            }
+            viewModel.Monday = beginDate;
+            viewModel.Sunday = beginDate.AddDays(6);
+
             long unixtimestampBeginDate = ConvertToUnixTime(beginDate);
             long unixtimestampEndDate = ConvertToUnixTime(beginDate.AddDays(6));
             if (authenticator.IsAuthenticated)
@@ -51,6 +59,8 @@ namespace DemandMoreVertical.Web.Controllers
                     var ath = JsonConvert.DeserializeObject<Classes.Athlete>(response);
 
                     response = await httpClient.GetStringAsync($"https://www.strava.com/api/v3/athlete/activities?after={unixtimestampBeginDate}&before={unixtimestampEndDate}");
+                    //response = await httpClient.GetStringAsync($"https://www.strava.com/api/v3/athlete/activities");
+
                     var acts = JsonConvert.DeserializeObject<List<Classes.Activity>>(response);
 
                     //insert into db now.
@@ -66,7 +76,7 @@ namespace DemandMoreVertical.Web.Controllers
                                     ActivityName = w.name,
                                     UserID = User.Identity.GetUserId(),
                                     Athlete = $"{ath.firstname} {ath.lastname}",
-                                    ElevationGain = Convert.ToInt32(Convert.ToDouble(w.total_elevation_gain) * 3.2808),
+                                    ElevationGain = Convert.ToInt32(Convert.ToInt32(w.total_elevation_gain) * 3.2808),
                                     ActivityID = Convert.ToInt32(w.id),
                                     Latitude = Convert.ToDecimal(w.start_latitude),
                                     Longitude = Convert.ToDecimal(w.start_longitude)
@@ -77,7 +87,6 @@ namespace DemandMoreVertical.Web.Controllers
                     }
 
                     // Build ViewModel
-                    var viewModel = new HomeViewModel();
                     viewModel.Activities = acts;
                     viewModel.Athlete = ath;
 

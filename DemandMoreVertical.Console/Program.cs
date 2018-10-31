@@ -11,7 +11,8 @@ namespace DemandMoreVertical.Console
     {
         static void Main(string[] args)
         {
-            StaticAuthentication auth = new StaticAuthentication("");
+            int x = 1000000;
+            System.Console.WriteLine(x.ToString());
             
         }
     }

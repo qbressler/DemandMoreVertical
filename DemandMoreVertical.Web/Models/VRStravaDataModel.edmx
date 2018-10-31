@@ -31,7 +31,7 @@
           <Property Name="ActivityName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Athlete" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ActivityDate" Type="datetime" Nullable="false" />
-          <Property Name="ElevationGain" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="ElevationGain" Type="int" Nullable="false" />
           <Property Name="ActivityID" Type="bigint" Nullable="false" />
           <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
           <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
@@ -95,7 +95,7 @@
           <Property Name="ActivityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Athlete" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ActivityDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ElevationGain" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="ElevationGain" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Elevations_AspNetUsers" FromRole="Elevation" ToRole="AspNetUser" />
           <Property Name="ActivityID" Type="Int32" Nullable="false" />
           <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />

@@ -19,5 +19,7 @@ namespace DemandMoreVertical.Web.ViewModels
 
         public IList<Classes.Activity> Activities { get; set; }
         public Classes.Athlete Athlete { get; set; }
+        public DateTime Monday { get; set; }
+        public DateTime Sunday { get; set; }
     }
 }
