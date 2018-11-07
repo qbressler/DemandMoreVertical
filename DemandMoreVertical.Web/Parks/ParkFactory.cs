@@ -6,6 +6,9 @@ using System.Web;
 
 namespace DemandMoreVertical.Web.Parks
 {
+    /// <summary>
+    /// Builds park factory...
+    /// </summary>
     public static class ParkFactory
     {
         public static Park Build(decimal startingLatitude)
@@ -22,6 +25,7 @@ namespace DemandMoreVertical.Web.Parks
             }
             else
                 park = new GenericPark("Generic");
+
             return park;
         }
     }
