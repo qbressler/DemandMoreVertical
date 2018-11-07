@@ -1,11 +1,13 @@
 ﻿using DemandMoreVertical.Web.Authentication;
 using DemandMoreVertical.Web.Models;
+using DemandMoreVertical.Web.Parks;
 using DemandMoreVertical.Web.ViewModels;
 using Microsoft.AspNet.Identity;
 using Newtonsoft.Json;
 using StravaSharp;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -66,6 +68,10 @@ namespace DemandMoreVertical.Web.Controllers
                     //insert into db now.
                     foreach (var w in acts)
                     {
+                        #region determine park
+                        Park park = Parks.ParkFactory.Build(Convert.ToDecimal(w.start_latitude));
+                        Debug.WriteLine(park.ParkName);
+                        #endregion
                         var exists = Convert.ToBoolean(_db.Elevations.Where(x => x.ActivityID == w.id).Count());
                         if (!exists)
                         {
