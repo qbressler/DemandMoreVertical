@@ -11,16 +11,24 @@ namespace DemandMoreVertical.Web.Parks
     /// </summary>
     public static class ParkFactory
     {
-        public static Park Build(decimal startingLatitude)
+        #region CVNP coords
+        private const decimal CVNP_NLAT = 41.32m;
+        private const decimal CVNP_SLAT = 41.16m;
+        private const decimal CVNP_WLONG = -81.60m;
+        private const decimal CVNP_ELONG = -81.50m;
+        #endregion
+
+        public static RunningParks Build(decimal startingLatitude, decimal startingLongitude)
         {
-            Park park = null;
-            if (Decimal.Compare(startingLatitude, 41.20m) < 0 
-                && Decimal.Compare(startingLatitude, 41.16m) > 0
-                && Decimal.Compare(startingLatitude, -81.60m) < 0
-                && Decimal.Compare(startingLatitude, -81.50m) > 0)
+            RunningParks park = null;
+
+            if (Decimal.Compare(startingLatitude, CVNP_NLAT) < 0 
+                && Decimal.Compare(startingLatitude, CVNP_SLAT) > 0
+                && Decimal.Compare(startingLongitude, CVNP_WLONG) > 0
+                && Decimal.Compare(startingLongitude, CVNP_ELONG) < 0)
             {
                 // falls inbetween the most northern and southern point of CVNP
-                Debug.Write("Building CVNP");
+                Debug.Write("Building CVNP Object");
                 park = new CVNP("CVNP");
             }
             else

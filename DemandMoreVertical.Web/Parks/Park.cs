@@ -5,15 +5,16 @@ using System.Web;
 
 namespace DemandMoreVertical.Web.Parks
 {
-    public class Park
+    public abstract class RunningParks
     {
 
         #region properties
         public string ParkName { get; protected set; }
+        public abstract int ParkID { get; }
         #endregion
 
         #region constructor
-        public Park(string parkName)
+        public RunningParks(string parkName)
         {
             ParkName = parkName;
         }

@@ -249,6 +249,9 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Park.cs">
+      <DependentUpon>VRStravaDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\VRStravaDataModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

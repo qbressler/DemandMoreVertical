@@ -27,5 +27,6 @@ namespace DemandMoreVertical.Web.Models
     
         public virtual DbSet<AspNetUser> AspNetUsers { get; set; }
         public virtual DbSet<Elevation> Elevations { get; set; }
+        public virtual DbSet<Park> Parks { get; set; }
     }
 }

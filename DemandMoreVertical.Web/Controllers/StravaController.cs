@@ -68,10 +68,14 @@ namespace DemandMoreVertical.Web.Controllers
                     //insert into db now.
                     foreach (var w in acts)
                     {
+
+                        w.start_latitude = 41.21m;
+                        w.start_longitude = -81.54;
                         #region determine park
-                        Park park = Parks.ParkFactory.Build(Convert.ToDecimal(w.start_latitude));
+                        RunningParks park = ParkFactory.Build(Convert.ToDecimal(w.start_latitude), Convert.ToDecimal(w.start_longitude));
                         Debug.WriteLine(park.ParkName);
                         #endregion
+                       
                         var exists = Convert.ToBoolean(_db.Elevations.Where(x => x.ActivityID == w.id).Count());
                         if (!exists)
                         {
@@ -85,7 +89,8 @@ namespace DemandMoreVertical.Web.Controllers
                                     ElevationGain = Convert.ToInt32(Convert.ToInt32(w.total_elevation_gain) * 3.2808),
                                     ActivityID = Convert.ToInt32(w.id),
                                     Latitude = Convert.ToDecimal(w.start_latitude),
-                                    Longitude = Convert.ToDecimal(w.start_longitude)
+                                    Longitude = Convert.ToDecimal(w.start_longitude),
+                                    ParkId = park.ParkID
                                 }
                             );
                             _db.SaveChanges();
