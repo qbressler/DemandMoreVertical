@@ -11,7 +11,10 @@ namespace DemandMoreVertical.Web.Parks
         public static Park Build(decimal startingLatitude)
         {
             Park park = null;
-            if (Decimal.Compare(startingLatitude, 41.20m) < 0 && Decimal.Compare(startingLatitude, 41.16m) > 0)
+            if (Decimal.Compare(startingLatitude, 41.20m) < 0 
+                && Decimal.Compare(startingLatitude, 41.16m) > 0
+                && Decimal.Compare(startingLatitude, -81.60m) < 0
+                && Decimal.Compare(startingLatitude, -81.50m) > 0)
             {
                 // falls inbetween the most northern and southern point of CVNP
                 Debug.Write("Building CVNP");
