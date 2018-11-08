@@ -33,9 +33,10 @@
           <Property Name="ActivityDate" Type="datetime" Nullable="false" />
           <Property Name="ElevationGain" Type="int" Nullable="false" />
           <Property Name="ActivityID" Type="bigint" Nullable="false" />
-          <Property Name="Latitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
-          <Property Name="Longitude" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Latitude" Type="decimal" Precision="18" Scale="3" Nullable="false" />
+          <Property Name="Longitude" Type="decimal" Precision="18" Scale="3" Nullable="false" />
           <Property Name="ParkId" Type="int" Nullable="false" />
+          <Property Name="ParkName" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Parks">
           <Key>
@@ -44,26 +45,10 @@
           <Property Name="ParkId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ParkName" Type="varchar" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_Elevations_AspNetUsers">
-          <End Role="AspNetUsers" Type="Self.AspNetUsers" Multiplicity="1" />
-          <End Role="Elevations" Type="Self.Elevations" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="AspNetUsers">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Elevations">
-              <PropertyRef Name="UserID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="ModelStoreContainer">
           <EntitySet Name="AspNetUsers" EntityType="Self.AspNetUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Elevations" EntityType="Self.Elevations" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Parks" EntityType="Self.Parks" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK_Elevations_AspNetUsers" Association="Self.FK_Elevations_AspNetUsers">
-            <End Role="AspNetUsers" EntitySet="AspNetUsers" />
-            <End Role="Elevations" EntitySet="Elevations" />
-          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -108,9 +93,10 @@
           <Property Name="ElevationGain" Type="Int32" Nullable="false" />
           <NavigationProperty Name="AspNetUser" Relationship="Model.FK_Elevations_AspNetUsers" FromRole="Elevation" ToRole="AspNetUser" />
           <Property Name="ActivityID" Type="Int32" Nullable="false" />
-          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
-          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="Latitude" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
+          <Property Name="Longitude" Type="Decimal" Nullable="false" Precision="18" Scale="3" />
           <Property Name="ParkId" Type="Int32" Nullable="false" />
+          <Property Name="ParkName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_Elevations_AspNetUsers">
           <End Type="Model.AspNetUser" Role="AspNetUser" Multiplicity="1" />
@@ -158,6 +144,7 @@
           <EntitySetMapping Name="Elevations">
             <EntityTypeMapping TypeName="Model.Elevation">
               <MappingFragment StoreEntitySet="Elevations">
+                <ScalarProperty Name="ParkName" ColumnName="ParkName" />
                 <ScalarProperty Name="ParkId" ColumnName="ParkId" />
                 <ScalarProperty Name="Longitude" ColumnName="Longitude" />
                 <ScalarProperty Name="Latitude" ColumnName="Latitude" />

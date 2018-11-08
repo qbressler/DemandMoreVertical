@@ -29,10 +29,10 @@ namespace DemandMoreVertical.Web.Parks
             {
                 // falls inbetween the most northern and southern point of CVNP
                 Debug.Write("Building CVNP Object");
-                park = new CVNP("CVNP");
+                park = new CVNP();
             }
             else
-                park = new GenericPark("Generic");
+                park = new GenericPark();
 
             return park;
         }

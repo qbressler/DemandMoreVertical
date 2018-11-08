@@ -23,6 +23,7 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
                     <li>@Html.ActionLink("My Stats", "MyStats", "Strava")</li>
+                    <li>@Html.ActionLink("Overall CVNP Stats", "Index", "Cvnp")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -35,6 +36,7 @@
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - Vertical Runner - Demand More Vertical</p>
+            <p>Developed by runners, for runners.</p>
         </footer>
     </div>
 

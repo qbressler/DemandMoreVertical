@@ -24,6 +24,7 @@ namespace DemandMoreVertical.Web.Models
         public decimal Latitude { get; set; }
         public decimal Longitude { get; set; }
         public int ParkId { get; set; }
+        public string ParkName { get; set; }
     
         public virtual AspNetUser AspNetUser { get; set; }
     }

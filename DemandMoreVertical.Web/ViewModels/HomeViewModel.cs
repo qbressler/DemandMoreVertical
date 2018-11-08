@@ -12,12 +12,12 @@ namespace DemandMoreVertical.Web.ViewModels
         #region constructor
         public HomeViewModel()
         {
-            Activities = new List<Classes.Activity>();
+            Activities = new List<Models.Elevation>();
             Athlete = new Classes.Athlete();
         }
         #endregion
 
-        public IList<Classes.Activity> Activities { get; set; }
+        public IList<Models.Elevation> Activities { get; set; }
         public Classes.Athlete Athlete { get; set; }
         public DateTime Monday { get; set; }
         public DateTime Sunday { get; set; }

@@ -9,19 +9,21 @@ namespace DemandMoreVertical.Web.Parks
     {
 
         #region properties
-        public string ParkName { get; protected set; }
+        public abstract string ParkName { get; }
         public abstract int ParkID { get; }
         #endregion
 
         #region constructor
-        public RunningParks(string parkName)
+        public RunningParks()
         {
-            ParkName = parkName;
+            
         }
         #endregion
 
         #region methods
-      
+        public abstract List<Models.Elevation> GetAll();
+
+        public abstract Models.Elevation Get(int id);
         #endregion
 
     }

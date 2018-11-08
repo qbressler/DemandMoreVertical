@@ -234,6 +234,7 @@
     <Compile Include="Authentication\RequestFactory.cs" />
     <Compile Include="Classes\JsonToObj.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CvnpController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\StravaController.cs" />
@@ -365,6 +366,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cvnp\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

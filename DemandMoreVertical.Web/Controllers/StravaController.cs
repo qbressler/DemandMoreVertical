@@ -68,9 +68,10 @@ namespace DemandMoreVertical.Web.Controllers
                     //insert into db now.
                     foreach (var w in acts)
                     {
+                        // Wetmore Trail coords
+                        //w.start_latitude = 41.21m;
+                        //w.start_longitude = -81.54;
 
-                        w.start_latitude = 41.21m;
-                        w.start_longitude = -81.54;
                         #region determine park
                         RunningParks park = ParkFactory.Build(Convert.ToDecimal(w.start_latitude), Convert.ToDecimal(w.start_longitude));
                         Debug.WriteLine(park.ParkName);
@@ -90,7 +91,8 @@ namespace DemandMoreVertical.Web.Controllers
                                     ActivityID = Convert.ToInt32(w.id),
                                     Latitude = Convert.ToDecimal(w.start_latitude),
                                     Longitude = Convert.ToDecimal(w.start_longitude),
-                                    ParkId = park.ParkID
+                                    ParkId = park.ParkID,
+                                    ParkName = park.ParkName
                                 }
                             );
                             _db.SaveChanges();
@@ -98,7 +100,8 @@ namespace DemandMoreVertical.Web.Controllers
                     }
 
                     // Build ViewModel
-                    viewModel.Activities = acts;
+                    string userID = User.Identity.GetUserId().ToString();
+                    viewModel.Activities = _db.Elevations.Where(w=>w.UserID == userID).OrderByDescending(w=>w.ActivityDate).ToList();
                     viewModel.Athlete = ath;
 
                     return View(viewModel);
