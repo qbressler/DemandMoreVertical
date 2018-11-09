@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DemandMoreVertical.Web.Models;
+using DemandMoreVertical.Web.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,9 +23,11 @@ namespace DemandMoreVertical.Web.Parks
         #endregion
 
         #region methods
-        public abstract List<Models.Elevation> GetAll();
+        public abstract List<Elevation> GetAll();
 
-        public abstract Models.Elevation Get(int id);
+        public abstract Elevation Get(int id);
+
+        public abstract List<ParkTotals> GetLeaders();
         #endregion
 
     }

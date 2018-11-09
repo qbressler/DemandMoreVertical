@@ -1,4 +1,5 @@
 ﻿using DemandMoreVertical.Web.Models;
+using DemandMoreVertical.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,21 @@ namespace DemandMoreVertical.Web.Parks
         {
             return _db.Elevations.Where(w => w.Id == id).FirstOrDefault();
         }
+
+        public override List<ParkTotals> GetLeaders()
+        {
+            var q = (from b in _db.Elevations
+                    where b.ParkId == this.ParkID
+                    group b by b.Athlete into g
+                    select new ParkTotals
+                    {
+                        Athlete = g.Key,
+                        TotalGain = g.Sum(i => i.ElevationGain)
+                    }).ToList();
+           return q;
+        }
+
+
         #endregion
 
         #region properties

@@ -1,4 +1,5 @@
 ﻿using DemandMoreVertical.Web.Parks;
+using DemandMoreVertical.Web.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,15 @@ namespace DemandMoreVertical.Web.Controllers
         // GET: Cvnp
         public ActionResult Index()
         {
+            
             RunningParks parks = new CVNP();
-            var viewModel = parks.GetAll();
+
+            var viewModel = new ParkOverall
+            {
+                Elevation = parks.GetAll(),
+                ParkTotals = parks.GetLeaders()
+            };
+
             return View(viewModel);
         }
     }
