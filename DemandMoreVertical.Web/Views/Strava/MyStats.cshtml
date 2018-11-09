@@ -1,6 +1,6 @@
 ﻿@model DemandMoreVertical.Web.ViewModels.HomeViewModel
 
-<div class="row">
+<div class="row" style="margin-left:10px;">
     <img src="@Model.Athlete.profile" /><br />
     <h3>
         @Model.Athlete.firstname @Model.Athlete.lastname<br />
@@ -24,7 +24,7 @@ else
             <td><strong>Title</strong></td>
             <td><strong>Elevation</strong></td>
             <td><strong>Park</strong></td>
-            <td><strong>Date</strong></td>
+            @*<td><strong>Date</strong></td>*@
         </tr>
         @foreach (var a in Model.Activities)
         {
@@ -33,7 +33,7 @@ else
                 <td>@a.ActivityName</td>
                 <td>@Convert.ToInt32(total).ToString() ft</td>
                 <td>@a.ParkName</td>
-                <td>@String.Format("{0:d}", a.ActivityDate)</td>
+                @*<td>@String.Format("{0:d}", a.ActivityDate)</td>*@
             </tr>
         }
     </table>

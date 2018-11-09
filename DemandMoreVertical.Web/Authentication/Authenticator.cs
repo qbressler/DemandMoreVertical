@@ -44,8 +44,8 @@ namespace DemandMoreVertical.Web.Authentication
 
         public async Task<bool> OnPageLoaded(Uri uri)
         {
-            if (uri.AbsoluteUri.StartsWith(Client.Configuration.RedirectUri))
-            {
+            //if (uri.AbsoluteUri.StartsWith(Client.Configuration.RedirectUri))
+           // {
                 Debug.WriteLine("Navigated to redirect url.");
                 var parameters = uri.Query.Remove(0, 1).ParseQueryString(); // query portion of the response
                 await Client.GetUserInfo(parameters);
@@ -55,7 +55,7 @@ namespace DemandMoreVertical.Web.Authentication
                     AccessToken = Client.AccessToken;
                     return true;
                 }
-            }
+           // }
 
             return false;
         }

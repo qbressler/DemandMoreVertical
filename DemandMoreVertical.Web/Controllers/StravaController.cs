@@ -7,12 +7,14 @@ using Newtonsoft.Json;
 using StravaSharp;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web;
+using System.Web.Http;
 using System.Web.Mvc;
 
 namespace DemandMoreVertical.Web.Controllers
@@ -28,7 +30,7 @@ namespace DemandMoreVertical.Web.Controllers
         // GET: Strava
         public ActionResult Index()
         {
-            string redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Strava/Callback";
+            string redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Strava/CallBack";
             return Redirect("https://www.strava.com/oauth/authorize?client_id=18876&response_type=code&scope=activity:read_all&redirect_uri=" + redirectUrl+"&approval_prompt=auto");
         }
 
@@ -39,9 +41,7 @@ namespace DemandMoreVertical.Web.Controllers
             DateTime beginDate = DateTime.Today;
             while (beginDate.DayOfWeek != DayOfWeek.Monday)
             {
-
                 beginDate = beginDate.AddDays(-1);
-               
             }
             viewModel.Monday = beginDate;
             viewModel.Sunday = beginDate.AddDays(6);
@@ -117,10 +117,11 @@ namespace DemandMoreVertical.Web.Controllers
         Authenticator CreateAuthenticator()
         {
             string secretkey = String.Empty;
-            using (StreamReader reader = new StreamReader(@"C:\Users\qbressler\Desktop\strava_api_key.txt"))
-            {
-                secretkey = reader.ReadToEnd();
-            }
+            //using (StreamReader reader = new StreamReader(@"C:\Users\qbressler\Desktop\strava_api_key.txt"))
+            //{
+            //    secretkey = reader.ReadToEnd();
+            //}
+            secretkey = ConfigurationManager.AppSettings["clientkey"];
             var redirectUrl = $"{Request.Url.Scheme}://{Request.Url.Host}:{Request.Url.Port}/Strava/Callback";
             var config = new RestSharp.Portable.OAuth2.Configuration.RuntimeClientConfiguration
             {
@@ -151,7 +152,11 @@ namespace DemandMoreVertical.Web.Controllers
             return RedirectToAction("MyStats");
         }
 
-
+        [System.Web.Mvc.HttpGet]
+        public void GetResponse(StravaResponse body)
+        {
+            Response.Write(JsonConvert.SerializeObject(body));
+        }
         #region Helpers
         public static long ConvertToUnixTime(DateTime datetime)
         {
@@ -159,5 +164,13 @@ namespace DemandMoreVertical.Web.Controllers
             return (long)(datetime - sTime).TotalSeconds;
         }
         #endregion
+    }
+
+    public class StravaResponse
+    {
+        public string State { get; set; }
+        public string Code { get; set; }
+        public string error { get; set; }
+
     }
 }

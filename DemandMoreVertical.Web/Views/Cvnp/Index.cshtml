@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DemandMoreVertical.Web.Models.Elevation>
+
+@{
+    ViewBag.Title = "Index";
+
+    var monday = DateTime.Now;
+    while (monday.DayOfWeek != DayOfWeek.Monday)
+    {
+        monday = monday.AddDays(-1);
+    }
+}
+
+<h2>CVNP</h2>
+<p>Results for <strong>@monday.ToString("MM/dd/yyyy") through @monday.AddDays(6).ToString("MM/dd/yyyy")</strong></p>
+@if (Model.Count() == 0)
+{
+    <p>0 activities for this park</p>
+}
+else
+{
+    <table class="table table-striped">
+        <tr>
+            <th>
+                Activity
+            </th>
+            <th>
+                Athlete
+            </th>
+            <th>
+                Date
+            </th>
+            <th>
+                Elevation Gain
+            </th>
+            <th>
+                Park Name
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Athlete)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ActivityDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ElevationGain)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ParkName)
+                </td>
+
+
+            </tr>
+        }
+
+    </table>
+}
