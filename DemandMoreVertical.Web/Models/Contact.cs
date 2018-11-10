@@ -16,16 +16,9 @@ namespace DemandMoreVertical.Web.Models
     public partial class Contact
     {
         public int ContactID { get; set; }
-        [Required]
-        [Display(Name = "First Name")]
         public string FirstName { get; set; }
-        [Required]
-        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        [Required]
-        [EmailAddress(ErrorMessage = "Invalid Email")]
         public string Email { get; set; }
-        [Required]
         public string Message { get; set; }
     }
 }

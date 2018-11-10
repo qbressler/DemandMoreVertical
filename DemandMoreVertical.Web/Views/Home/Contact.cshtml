@@ -50,7 +50,7 @@ else
                 @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div class="col-md-10">
                     @Html.TextAreaFor(model => model.Message, new { cols = "50", rows = "15", htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                    <br />@Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
                 </div>
             </div>
 
