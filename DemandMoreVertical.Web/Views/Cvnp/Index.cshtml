@@ -2,16 +2,16 @@
 
 
 @{
-    ViewBag.Title = "Index";
-
     var monday = DateTime.Now;
     while (monday.DayOfWeek != DayOfWeek.Monday)
     {
         monday = monday.AddDays(-1);
     }
+    int place = 1;
 }
 
-<h2>CVNP</h2>
+<h2>Cuyahoga Valley National Park</h2>
+<br />
 <p>Results for <strong>@monday.ToString("MM/dd/yyyy") through @monday.AddDays(6).ToString("MM/dd/yyyy")</strong></p>
 @if (Model.Elevation.Count() == 0)
 {
@@ -20,19 +20,24 @@
 else
 {
 
-    <strong>This weeks leaders</strong>
+    <h2>This week's Leaders</h2>
+    <br />
     <table class="table table-striped">
         <tr>
+            <th></th>
             <th>Athlete</th>
             <th>Total Gain</th>
         </tr>
     @foreach(var t in Model.ParkTotals)
     {
         <tr>
-            <td>@t.Athlete</td><td>@t.TotalGain</td>
+            <td>@place</td><td>@t.Athlete</td><td>@t.TotalGain ft</td>
         </tr>
+        place++;
     }
     </table>
+    <br />
+    <h2>This week's Activities</h2>
     <table class="table table-striped">
         <tr>
             <th>
@@ -42,12 +47,9 @@ else
                 Athlete
             </th>
             <th>
-                Elevation Gain
+                Ele. Gain
             </th>
-            <th>
-                Park Name
-            </th>
-
+           
         </tr>
 
         @foreach (var item in Model.Elevation)
@@ -60,13 +62,9 @@ else
                     @Html.DisplayFor(modelItem => item.Athlete)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ElevationGain)
+                    @Html.DisplayFor(modelItem => item.ElevationGain) ft
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ParkName)
-                </td>
-
-
+                
             </tr>
         }
 

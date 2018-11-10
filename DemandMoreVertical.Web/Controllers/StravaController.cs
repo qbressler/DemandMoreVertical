@@ -37,7 +37,7 @@ namespace DemandMoreVertical.Web.Controllers
         public async Task<ActionResult> MyStats()
         {
             var authenticator = CreateAuthenticator();
-            var viewModel = new HomeViewModel();
+            var viewModel = new MyStatsViewModel();
             DateTime beginDate = DateTime.Today;
             while (beginDate.DayOfWeek != DayOfWeek.Monday)
             {
@@ -104,6 +104,7 @@ namespace DemandMoreVertical.Web.Controllers
                     viewModel.Activities = _db.Elevations.Where(w=>w.UserID == userID).OrderByDescending(w=>w.ActivityDate).ToList();
                     viewModel.Athlete = ath;
 
+                    ViewBag.Title = "Sync / My Stats";
                     return View(viewModel);
                 }
                 catch (Exception e)

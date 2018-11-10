@@ -14,13 +14,13 @@ namespace DemandMoreVertical.Web.Controllers
         // GET: Cvnp
         public ActionResult Index()
         {
-            
+            ViewBag.Title = "Cuyahoga Valley Nation Park Stats";
             RunningParks parks = new CVNP();
 
             var viewModel = new ParkOverall
             {
                 Elevation = parks.GetAll(),
-                ParkTotals = parks.GetLeaders()
+                ParkTotals = parks.GetLeaders().OrderByDescending(w => w.TotalGain).ToList()
             };
 
             return View(viewModel);

@@ -9,6 +9,7 @@
         <EntityTypeShape EntityType="Model.Elevation" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="Model.FK_Elevations_AspNetUsers" />
         <EntityTypeShape EntityType="Model.Park" Width="1.5" PointX="4.875" PointY="1" />
+        <EntityTypeShape EntityType="Model.Contact" Width="1.5" PointX="4.875" PointY="2.625" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -32,6 +32,7 @@ namespace DemandMoreVertical.Web.Parks
         {
             var q = (from b in _db.Elevations
                     where b.ParkId == this.ParkID
+                    orderby b.ElevationGain descending
                     group b by b.Athlete into g
                     select new ParkTotals
                     {

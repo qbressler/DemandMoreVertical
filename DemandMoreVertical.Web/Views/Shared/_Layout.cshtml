@@ -22,8 +22,9 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("My Stats", "MyStats", "Strava")</li>
+                    <li>@Html.ActionLink("Sync/View My Stats", "MyStats", "Strava")</li>
                     <li>@Html.ActionLink("Overall CVNP Stats", "Index", "Cvnp")</li>
+                    <li>@Html.ActionLink("Contact Us", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -31,7 +32,7 @@
     </div>
     <div class="container body-content">
         <br />
-        <img src="~/Content/VRLogo.png" style="margin-bottom: 50px; "/>
+        <a href="/"><img src="~/Content/VRLogo.png" style="margin-bottom: 50px; "/></a>
         @RenderBody()
         <hr />
         <footer>
