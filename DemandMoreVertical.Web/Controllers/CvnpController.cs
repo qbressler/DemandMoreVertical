@@ -19,7 +19,7 @@ namespace DemandMoreVertical.Web.Controllers
 
             var viewModel = new ParkOverall
             {
-                Elevation = parks.GetAll(),
+                Elevation = parks.GetAll().OrderByDescending(w=>w.ActivityDate).ToList(),
                 ParkTotals = parks.GetLeaders().OrderByDescending(w => w.TotalGain).ToList()
             };
 

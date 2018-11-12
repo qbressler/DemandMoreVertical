@@ -44,10 +44,10 @@ namespace DemandMoreVertical.Web.Controllers
                 beginDate = beginDate.AddDays(-1);
             }
             viewModel.Monday = beginDate;
-            viewModel.Sunday = beginDate.AddDays(6);
+            viewModel.Sunday = beginDate.AddDays(7);
 
             long unixtimestampBeginDate = ConvertToUnixTime(beginDate);
-            long unixtimestampEndDate = ConvertToUnixTime(beginDate.AddDays(6));
+            long unixtimestampEndDate = ConvertToUnixTime(beginDate.AddDays(7));
             if (authenticator.IsAuthenticated)
             {
                 try
